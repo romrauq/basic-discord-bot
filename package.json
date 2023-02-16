@@ -2,9 +2,9 @@
 	"name": "discord-practice-bot",
 	"version": "1.0.0",
 	"description": "A Discord bot practice application environment.",
-	"main": "index.js",
+	"main": "bot.js",
 	"scripts": {
-		"start": "node ./src/bot.js"
+		"start": "node bot.js"
 	},
 	"author": "John Q.",
 	"license": "ISC",
