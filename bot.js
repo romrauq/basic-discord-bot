@@ -1,18 +1,13 @@
 // require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
-const { Client, Events, GatewayIntentBits, Collection } = require("discord.js"); // Import/destructure class from discord.js library
+const { Client, GatewayIntentBits, Collection } = require("discord.js"); // Import/destructure class from discord.js library
 const { token } = require("./config.json");
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] }); // Create a new instance of the Client class:
 
 // Collection (class) is used to store & efficiently retrieve commands for execution.
 client.commands = new Collection();
-
-// An event listener that is fired when the bot successfully logs in:
-client.once(Events.ClientReady, (c) => {
-	console.log(`Ready! Logged in as ${c.user.tag}`);
-});
 
 // Get string of path to "../commands" directory:
 const commandsPath = path.join(__dirname, "commands");
@@ -33,25 +28,20 @@ for (const file of commandFiles) {
 	}
 }
 
-// An event listener that will execute whenever application receives an interaction:
-client.on(Events.InteractionCreate, async (interaction) => {
-	if (!interaction.isChatInputCommand()) return;
-	const command = interaction.client.commands.get(interaction.commandName);
+// Get directory path to events folder:
+const eventsPath = path.join(__dirname, "events");
+// Filter event files ending with ".js" extension within "../commands" directory:
+const eventFiles = fs.readdirSync(eventsPath).filter((file) => file.endsWith(".js"));
 
-	if (!command) {
-		console.error(`No command matching ${interaction.commandName} was found.`);
-		return;
+// Dynamically retrieve event files in the "./events" directory:
+for (const file of eventFiles) {
+	const filePath = path.join(eventsPath, file);
+	const event = require(filePath);
+	if (event.once) {
+		client.once(event.name, (...args) => event.execute(...args));
+	} else {
+		client.on(event.name, (...args) => event.execute(...args));
 	}
-
-	try {
-		await command.execute(interaction);
-	} catch (error) {
-		console.error(error);
-		await interaction.reply({
-			content: "There was an error while executing this command!",
-			ephemeral: true,
-		});
-	}
-});
+}
 
 client.login(token);
