@@ -19,7 +19,7 @@ const commandsPath = path.join(__dirname, "commands");
 // Get command files within "../commands" directory:
 const commandFiles = fs.readdirSync(commandsPath).filter((file) => file.endsWith(".js"));
 
-// Dynamically retrieve your command files for access from this  "./bot.js" file:
+// Dynamically retrieve command files for access from this  "./bot.js" file:
 for (const file of commandFiles) {
 	const filePath = path.join(commandsPath, file);
 	const command = require(filePath);
@@ -33,7 +33,7 @@ for (const file of commandFiles) {
 	}
 }
 
-// Create listener for Client#event:interactionCreate event that will execute whenever your application receives an interaction:
+// An event listener that will execute whenever application receives an interaction:
 client.on(Events.InteractionCreate, async (interaction) => {
 	if (!interaction.isChatInputCommand()) return;
 	const command = interaction.client.commands.get(interaction.commandName);
