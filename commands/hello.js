@@ -5,6 +5,6 @@ module.exports = {
 		.setName("hello")
 		.setDescription(`Replies to "/hello" slash command.`),
 	async execute(interaction) {
-		await interaction.reply("Pong!");
+		await interaction.reply("Hello, faithful servant of the Ommnissiah.");
 	},
 };
