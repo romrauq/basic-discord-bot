@@ -2,7 +2,7 @@
 const fs = require("fs");
 const path = require("path");
 const { Client, Events, GatewayIntentBits, Collection } = require("discord.js"); // Import/destructure class from discord.js library
-const { token } = require("../config.json");
+const { token } = require("./config.json");
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] }); // Create a new instance of the Client class:
 
