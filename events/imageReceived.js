@@ -1,6 +1,6 @@
-const { v4: uuid } = require("uuid");
-const request = require("request");
+const axios = require("axios");
 const fs = require("fs");
+const uuid = require("uuid").v4;
 
 module.exports = (client) => {
 	client.on("message", async (msg) => {
@@ -8,12 +8,23 @@ module.exports = (client) => {
 			const url = msg.attachments.first().url;
 			if (url.startsWith("https://cdn.discordapp.com")) {
 				const imageName = uuid() + ".jpg";
-				const file = fs.createWriteStream(imageName);
-				request(url)
-					.pipe(file)
-					.on("close", () => {
+				const writer = fs.createWriteStream(imageName);
+
+				try {
+					const response = await axios({
+						url,
+						method: "GET",
+						responseType: "stream",
+					});
+
+					response.data.pipe(writer);
+
+					writer.on("finish", () => {
 						console.log(`Saved image: ${imageName}`);
 					});
+				} catch (err) {
+					console.log("Error:", err);
+				}
 			}
 		}
 	});
