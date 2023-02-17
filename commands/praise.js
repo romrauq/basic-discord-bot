@@ -6,7 +6,7 @@ module.exports = {
 		.setDescription("Gives praise to the almighty Ommnissiah."),
 	async execute(interaction) {
 		await interaction.reply(
-			`${interaction.user.username} gives praise to the almighty Ommnissiah!`
+			`${interaction.user.username} gives praise to the almighty Omnissiah!`
 		);
 	},
 };

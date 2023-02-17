@@ -7,7 +7,7 @@ module.exports = {
 		.setDescription(`Responds descreetly to user who exeuted the holy command.`),
 	async execute(interaction) {
 		await interaction.reply({
-			content: "Absent his presence may feel but the Ommnissiah watches over us all",
+			content: "Absent his presence may feel but the Omnissiah watches over us all",
 			ephemeral: true, // Sets the reply to be seen only by the command executor.
 		});
 	},
