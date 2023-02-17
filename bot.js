@@ -9,7 +9,7 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] }); // Create a 
 // Collection (class) is used to store & efficiently retrieve commands for execution.
 client.commands = new Collection();
 
-// Get string of path to "../commands" directory:
+// Get string of path to "./commands" directory:
 const commandsPath = path.join(__dirname, "commands");
 // Get command files within "../commands" directory:
 const commandFiles = fs.readdirSync(commandsPath).filter((file) => file.endsWith(".js"));
@@ -28,7 +28,7 @@ for (const file of commandFiles) {
 	}
 }
 
-// Get directory path to events folder:
+// Get string of path to "./events" directory:
 const eventsPath = path.join(__dirname, "events");
 // Filter event files ending with ".js" extension within "../commands" directory:
 const eventFiles = fs.readdirSync(eventsPath).filter((file) => file.endsWith(".js"));
