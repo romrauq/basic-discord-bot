@@ -1,7 +1,7 @@
 // require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
-const { Client, GatewayIntentBits, Collection } = require("discord.js"); // Import/destructure class from discord.js library
+const { Client, GatewayIntentBits, Collection } = require("discord.js"); // Import classes from discord.js library
 const { token } = require("./config.json");
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] }); // Create a new instance of the Client class:
