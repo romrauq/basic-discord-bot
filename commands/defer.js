@@ -3,7 +3,7 @@ const wait = require("node:timers/promises").setTimeout;
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName("deferum")
+		.setName("defer")
 		.setDescription("Give the adept time to ponder the glory of the Omnissiah."),
 	async execute(interaction) {
 		await interaction.deferReply();
