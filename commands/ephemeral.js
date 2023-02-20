@@ -4,7 +4,7 @@ const { SlashCommandBuilder } = require("discord.js");
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("descreet")
-		.setDescription(`Responds descreetly to user who exeuted.`),
+		.setDescription(`Responds descreetly to the user who exeuted the command.`),
 	async execute(interaction) {
 		await interaction.reply({
 			content: "Only you will receive the response to the command.",

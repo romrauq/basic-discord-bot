@@ -3,8 +3,9 @@ const { SlashCommandBuilder } = require("discord.js");
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("hello")
-		.setDescription(`Replies to "/hello" slash command.`),
+		.setDescription('Responds with "Hello ${username}".'),
 	async execute(interaction) {
-		await interaction.reply("Hello, faithful servant of the Ommnissiah.");
+		const username = interaction.user.username; // Gets user's username.
+		await interaction.reply(`Hello ${username}!`);
 	},
 };

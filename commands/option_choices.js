@@ -7,8 +7,8 @@ module.exports = {
 		.addStringOption((option) =>
 			option
 				.setName("option_choices")
-				.setDescription(`This is the option description.`)
-				.setRequired(true)
+				.setDescription(`Returns a list of option to select as command arguments.`)
+				.setRequired(true) // Sets the slash command to be only exected after a required option is selcected.
 				.addChoices(
 					{
 						name: "Funny",
@@ -19,7 +19,7 @@ module.exports = {
 				)
 		),
 	async execute(interaction) {
-		const choice_value = interaction.options.getString("option_choices"); // Get selected choice value.
+		const choice_value = interaction.options.getString("option_choices"); // Get selected option choice value.
 		await interaction.reply(`The value of the user's selected choice is:
 		 "${choice_value}"`);
 	},

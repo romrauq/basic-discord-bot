@@ -4,10 +4,10 @@ const wait = require("node:timers/promises").setTimeout;
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("defer")
-		.setDescription("Give the adept time to ponder the glory of the Omnissiah."),
+		.setDescription("Sends a responds after a specified (wait) period."),
 	async execute(interaction) {
 		await interaction.deferReply();
 		await wait(5000);
-		await interaction.editReply("Thank you for your patience for the Omnissiah.");
+		await interaction.editReply("Thank you for your patience.");
 	},
 };
